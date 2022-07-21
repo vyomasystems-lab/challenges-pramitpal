@@ -57,7 +57,7 @@ async def random_test_mux(dut):
         # else:
             # cocotb.log.info("testing for sel line {sel} input={inp}--output={out} ..ok".format(sel=i,inp=inputs[i],out=dut.out.value.integer))
     assert error_count == 0, "There are {c} errors.".format(c=error_count)
-    # print("Output not match {OUT}".format(OUT=2))
+
 
 @cocotb.test()
 async def fixed_test_mux(dut):
@@ -108,5 +108,5 @@ async def fixed_test_mux(dut):
         # else:
             # cocotb.log.info("testing for sel line {sel} input={inp}--output={out} ..ok".format(sel=i,inp=n,out=dut.out.value.integer))
     assert error_count == 0, "There are {c} errors.".format(c=error_count)
-    # print("Output not match {OUT}".format(OUT=2))
+  
         
