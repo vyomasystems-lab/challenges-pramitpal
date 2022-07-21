@@ -37,7 +37,10 @@ module mux(sel,inp0, inp1, inp2, inp3, inp4, inp5, inp6, inp7, inp8,
       5'b01001: out = inp9;  
       5'b01010: out = inp10;
       5'b01011: out = inp11;
-      5'b01101: out = inp12;
+      //5'b01101: out = inp12;//==>bug
+
+      5'b01100: out = inp12;//corrected
+
       5'b01101: out = inp13;
       5'b01110: out = inp14;
       5'b01111: out = inp15;
@@ -55,6 +58,9 @@ module mux(sel,inp0, inp1, inp2, inp3, inp4, inp5, inp6, inp7, inp8,
       5'b11011: out = inp27;
       5'b11100: out = inp28;
       5'b11101: out = inp29;
+                            //=> bug input30 missing
+      5'b11110: out = inp30; //corrected
+      
       default: out = 0;
     endcase
   end
