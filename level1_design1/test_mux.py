@@ -63,7 +63,7 @@ async def random_test_mux(dut):
 async def fixed_test_mux(dut):
     """Randomized Test for mux2"""
     cocotb.log.info("FIXED VALUE TEST")
-    n=2
+    n=3
     # -----------------
     dut.inp0.value=n
     dut.inp1.value=n
