@@ -1,0 +1,2 @@
+
+1. Failed instr: 0x40007033 SRC_inp1 = 0x6d5df3c9, SRC_inp2 = 0x4bffaf2e, SRC_inp3 = 0xeb5ec92e ||DUT OUTPUT = 0x92bb4611, EXPECTED OUTPUT = 0x4800a183
