@@ -13,8 +13,10 @@ from cocotb.triggers import RisingEdge, FallingEdge
 
 
 @cocotb.test()
-async def test_seq_bug1(dut):
+async def fixed_test_seq_bug1(dut):
     """Test for seq detection """
+
+    f = open("fixed_test_seq.log", "w")
 
     clock = Clock(dut.clk, 10, units="us")  # Create a 10us period clock on port clk
     cocotb.start_soon(clock.start())        # Start the clock
@@ -56,14 +58,19 @@ async def test_seq_bug1(dut):
 
     # convert output to a string
     output_str=''.join(map(str, output))
-
+    
+    if output_str!=expected_output_str:
+        f.write(f'input_test_sequence = {test_sequence}, output sequence expected={expected_output_str}, DUT output sequence={output_str}')
+    
+    f.close()
     # DEBUGGING PART---------------------------
-    # cocotb.log.info('output expected={x}, output got={y}'.format(x=expected_output_str,y=output_str))
+    cocotb.log.info("output expected = {x}, output got = {y}".format(x=expected_output_str,y=output_str))
     assert output_str==expected_output_str,'Expected Output is not same as Output'
  
 @cocotb.test()
 async def random_test_seq_bug1(dut):
     """Test for seq detection """
+    f = open("random_test_seq.log", "w")
 
     clock = Clock(dut.clk, 10, units="us")  # Create a 10us period clock on port clk
     cocotb.start_soon(clock.start())        # Start the clock
@@ -79,7 +86,7 @@ async def random_test_seq_bug1(dut):
     s=format(n, '0128b')
     test_sequence=s
 
-    # cocotb.log.info('####Random Test Sequence={x} ######'.format(x=test_sequence))
+    cocotb.log.info('####Random Test Sequence={x} ######'.format(x=test_sequence))
 
     expected_output=[]
     expected_output_str=''
@@ -106,7 +113,11 @@ async def random_test_seq_bug1(dut):
 
     # convert output to a string
     output_str=''.join(map(str, output))
-
+    
+    if output_str!=expected_output_str:
+        f.write(f'input_test_sequence = {test_sequence}, output sequence expected={expected_output_str}, DUT output sequence={output_str}')
+    
+    f.close()
     # DEBUGGING PART---------------------------
     # cocotb.log.info('output expected={x}, output got={y}'.format(x=expected_output_str,y=output_str))
     assert output_str==expected_output_str,'Expected Output is not same as Output'
