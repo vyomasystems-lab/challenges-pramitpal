@@ -1,0 +1,3 @@
+
+1. For Sel= 12, input=3 || expected output = 3, DUT output=0
+2. For Sel= 30, input=3 || expected output = 3, DUT output=0

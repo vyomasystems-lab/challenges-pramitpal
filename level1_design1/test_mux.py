@@ -7,6 +7,9 @@ import uuid
 @cocotb.test()
 async def random_test_mux(dut):
     """Randomized Test for mux2"""
+
+    f = open("random_test.log", "w")
+
     cocotb.log.info("RANDOM VALUE TEST")
     n=uuid.uuid1().int>>64
     s=format(n, '064b')
@@ -52,16 +55,21 @@ async def random_test_mux(dut):
         await Timer(2, units='ns')
             # print(dut.out.value.integer)
         if(dut.out.value!=inputs[i]):
+            
             cocotb.log.info("ERROR!! for Sel= {sel},input={inp}--output={out}, is not correct".format(sel=dut.sel.value.integer,inp=inputs[i],out=dut.out.value.integer))
             error_count+=1
+            f.write(f'\n{error_count}. For Sel= {dut.sel.value.integer}, input={inputs[i]} || expected output = {inputs[i]}, DUT output={dut.out.value.integer}')
         # else:
             # cocotb.log.info("testing for sel line {sel} input={inp}--output={out} ..ok".format(sel=i,inp=inputs[i],out=dut.out.value.integer))
+    f.close()
     assert error_count == 0, "There are {c} errors.".format(c=error_count)
 
 
 @cocotb.test()
 async def fixed_test_mux(dut):
     """Randomized Test for mux2"""
+    f = open("fixed_test.log", "w")
+
     cocotb.log.info("FIXED VALUE TEST")
     n=3
     # -----------------
@@ -105,8 +113,10 @@ async def fixed_test_mux(dut):
         if(dut.out.value!=n):
             cocotb.log.info("ERROR!! for Sel= {sel},input={inp}--output={out}, is not correct".format(sel=dut.sel.value.integer,inp=n,out=dut.out.value.integer))
             error_count+=1
+            f.write(f'\n{error_count}. For Sel= {dut.sel.value.integer}, input={n} || expected output = {n}, DUT output={dut.out.value.integer}')
         # else:
             # cocotb.log.info("testing for sel line {sel} input={inp}--output={out} ..ok".format(sel=i,inp=n,out=dut.out.value.integer))
+    f.close()
     assert error_count == 0, "There are {c} errors.".format(c=error_count)
   
         
