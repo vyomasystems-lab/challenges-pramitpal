@@ -7,7 +7,7 @@ module counter(clk,reset,count);
     if(reset)    //Set Counter to Zero
       count <= 0;
     else
-      count <= count + 1;
+      count <= count - 1; //error should be count<=count+1
   end
   
 endmodule
@@ -23,13 +23,13 @@ module input_capture(sig,clk,val,rst,rstVal,intFlag,rstIntFlag);
   
   always@(posedge sig or posedge rstVal or posedge rstIntFlag) begin
     if(rstVal)
-      	val<=4'b0;
+      	val<= 1; //error should be zero
     else begin
-    	val<=tempCount;
+    	//val<=tempCount;
       	intFlag<=1'b1;
     end
-    if(rstIntFlag)
-      intFlag<=1'b0;
+    //if(rstIntFlag) //error should be present
+    //intFlag<=1'b0;//error should be present
     
   end
 endmodule
