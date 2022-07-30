@@ -2,9 +2,7 @@
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
 
-*Make sure to include the Gitpod id in the screenshot*
-
-![](https://i.imgur.com/miWGA1o.png)
+![gitpod ss](https://user-images.githubusercontent.com/41202066/181937178-374e21a3-f30e-486f-a09d-220c3854a903.png)
 
 ## Verification Environment
 
