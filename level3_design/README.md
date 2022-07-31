@@ -2,7 +2,7 @@
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
 
-![gitpod ss](https://user-images.githubusercontent.com/110148281/181936152-339063ff-ddb9-439e-96a1-888baae0a9c8.png)
+![gitpod ss2](https://user-images.githubusercontent.com/41202066/182039952-0cf50802-d115-4e40-b229-89c6aad7ab86.png)
 
 ## Verification Environment0
 
@@ -118,12 +118,13 @@ Output mismatches for the above tests prove that there are design bugs in both t
 Based on the above test inputs and analysing the design, we see that in the counter module the counting does not increment with each clock pulse, but decrements by one for each clock pulse which is a design bug. 
 In the input_capture module there are three design bugs, namely *val* register reset working incorrectly, *val* register does not match with the current count value of the counter module and the *intFlag* reset is also working incorrectly.
 All other operations are correct, as the expected output matches the observed output from the dut, for all the tests.
+
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
 
 ![image](https://user-images.githubusercontent.com/41202066/182036824-6880e077-7032-4092-b213-a402281e5792.png)
 
-The updated design is checked in as mux_fix.v in *correct_design* directory in *level3_design*
+The updated design is checked in as input_capture.v in *correct_design* directory in *level3_design*
 ## Verification Strategy
 The verification method is divided into two parts, checking the counter module and checking the working of the input_capture module. For the counter module the reset functionality is tested which comes out as working correctly. But for the the count value for each clock pulse the counter actually decrements its value, which is clearly a bug.
 For the input_capture module all the functions are tested, out of which the *val* register reset, *val* register count and the *intFlag* reset functions are actually buggy as the observed output does not match the expected output.
