@@ -1,9 +1,7 @@
 # Level1 Design1 Verification
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
-
-![gitpod ss](https://user-images.githubusercontent.com/41202066/181937178-374e21a3-f30e-486f-a09d-220c3854a903.png)
-
+![gitpod ss2](https://user-images.githubusercontent.com/41202066/182040056-bd1beedd-4b9a-4621-840d-6dcfe509a608.png)
 ## Verification Environment
 
 The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained. The test drives inputs to the Design Under Test (mux module here) which takes in 31 2-bit inputs ie. *inp0* through *inp30*, 5-bit *sel* input and gives 2-bit output *out*
