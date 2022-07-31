@@ -148,7 +148,7 @@ Updating the design and re-running the test makes the test pass.
 ![image](https://user-images.githubusercontent.com/110148281/181808597-6e655def-2282-4ce4-8fcf-da6091f34591.png)
 
 
-The updated design is checked in as mux_fix.v in *correct_design* directory in *level1_design1*
+The updated design is checked in as seq_detect_1011.v in *correct_design* directory in *level1_design2*
 
 ## Verification Strategy
 The verification method is divided into two parts, namely a random input test sequence and a fixed input test sequence.
