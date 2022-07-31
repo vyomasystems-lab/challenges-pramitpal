@@ -87,32 +87,29 @@ The following error is seen:
 ```
 
 ## Test Scenario **(Important)**
-- Fixed value Test with Varied Instructions:
-  - Test src Inputs: ``mav_putvalue_src1=0xea45f207``,  ``mav_putvalue_src2=0xc3985fa2``,`` mav_putvalue_src3=0x9f09f908``
-  - Expected Output:``mav_putvalue = 0x508b400b`` 
-  - Observed Output in the DUT ``dut.mav_putvalue=0x18400a405``
-  - Failing instrucion : ``mav_putvalue_instr=0x40007033`` or ``mav_putvalue_instr = 0b01000000000000000111000000110011``
-  - Corresponding Operation ``--ANDN``
+- Counter Module Test:
+  - Immediately after reset ``*dut.ct.count.value*= `0xff`, and after one rising edge clock pulse ``*dut.ct.count.value*= `0xfe`
+  - Expected Output: After one clock pulse ``*dut.ct.count.value*= `0x01`
+  - Observed Output: After one clock pulse ``*dut.ct.count.value*= `0xfe`
+  - Error Output: ``Decrement counting-- ERROR``
  
-- Varied value Test with Varied Instructions (Few of the varied instructions are given here):
-  - Input sequence 1:
-    - Test src Inputs: ``mav_putvalue_src1=0x20000000``,  ``mav_putvalue_src2=0x80000``,`` mav_putvalue_src3=0x8000000``
-    - Expected Output:``mav_putvalue = 0x40000001`` 
-    - Observed Output in the DUT ``dut.mav_putvalue=0x1``
-    - Failing instrucion : ``mav_putvalue_instr=0x40007033`` or ``mav_putvalue_instr = 0b01000000000000000111000000110011``
-    - Corresponding Operation ``--ANDN``
-  - Input sequence 2:
-    - Test src Inputs: ``mav_putvalue_src1=0x20000000``,  ``mav_putvalue_src2=0x80000``,`` mav_putvalue_src3=0x10000000``
-    - Expected Output:``mav_putvalue = 0x40000001`` 
-    - Observed Output in the DUT ``dut.mav_putvalue=0x1``
-    - Failing instrucion : ``mav_putvalue_instr=0x40007033`` or ``mav_putvalue_instr = 0b01000000000000000111000000110011``
-    - Corresponding Operation ``--ANDN``
-  - Input sequence 3:
-    - Test src Inputs: ``mav_putvalue_src1=0x20000000``,  ``mav_putvalue_src2=0x80000``,`` mav_putvalue_src3=0x20000000``
-    - Expected Output:``mav_putvalue = 0x40000001`` 
-    - Observed Output in the DUT ``dut.mav_putvalue=0x1``
-    - Failing instrucion : ``mav_putvalue_instr=0x40007033`` or ``mav_putvalue_instr = 0b01000000000000000111000000110011``
-    - Corresponding Operation ``--ANDN``
+- Input Capture Module Test:
+  - Value Register Reset Test:
+    - After setting the *rstVal* port high the *val* register should be reset to 0x00 but in this buggy design *val* register resets to a value of  0x1
+    - Expected Output:``val = 0x0`` 
+    - Observed Output in the DUT ``val=0x1``
+    - Error Output: `` Val Register reset fault-- ERROR``
+  - Captured *val* register Test:
+    - After giving an input pulse to *sig* port the *val* register should be equal to the current *count* value of the counter module but instead the *val* stays at 0x1
+    - Expected Output:``val = dut.ct.count.value`` 
+    - Observed Output in the DUT ``val=0x1``
+    - Error Output: `` Signal input Capture fault-- ERROR``
+    
+  - Interrupt Flag Reset Test:
+    - After setting the *rstVal* port high the *val* register should be reset to 0x00 but in this buggy design *val* register resets to a value of  0x1
+    - Expected Output:``val = 0x0`` 
+    - Observed Output in the DUT ``val=0x1``
+    - Error Output: `` Val Register reset fault-- ERROR``
 
 
 Output mismatches for the above inputs proving that there is a design bug
