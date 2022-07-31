@@ -89,7 +89,7 @@ Updating the design and re-running the test makes the test pass.
 ![image](https://user-images.githubusercontent.com/110148281/181670763-3f9b1bf1-decd-4abc-94e1-606e0ab0bccf.png)
 
 
-The updated design is checked in as mux_fix.v in *correct_design* directory in *level1_design1*
+The updated design is checked in as mux.v in *correct_design* directory in *level1_design1*
 
 ## Verification Strategy
 The verification method is divided into two parts, namely a random input test and a fixed input test.
