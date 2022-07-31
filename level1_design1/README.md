@@ -40,26 +40,26 @@ assert error_count == 0, "There are {c} errors.".format(c=error_count)
 ```
 ## Test Scenario **(Important)**
 - Fixed value Test:
-- Test Inputs: sel=0b1100, inp12= 0b011 
-- Expected Output: out = 0b011 
-- Observed Output in the DUT dut.out=0
+  - Test Inputs: sel=0b1100, inp12= 0b011 
+  - Expected Output: out = 0b011 
+  - Observed Output in the DUT dut.out=0
 
-- Test Inputs: sel=0b11110, inp30= 0b011 
-- Expected Output: out = 0b011 
-- Observed Output in the DUT dut.out=0
+  - Test Inputs: sel=0b11110, inp30= 0b011 
+  - Expected Output: out = 0b011 
+  - Observed Output in the DUT dut.out=0
 
 - Random value Test:
-- Test Inputs: sel=0b1100, inp12= 0b011 
-- Expected Output: out = 0b011 
-- Observed Output in the DUT dut.out=0
+  - Test Inputs: sel=0b1100, inp12= 0b011 
+  - Expected Output: out = 0b011 
+  - Observed Output in the DUT dut.out=0
 
-- Test Inputs: sel=0b1101, inp13= 0b001 
-- Expected Output: out = 0b001 
-- Observed Output in the DUT dut.out=0b011
+  - Test Inputs: sel=0b1101, inp13= 0b001 
+  - Expected Output: out = 0b001 
+  - Observed Output in the DUT dut.out=0b011
 
-- Test Inputs: sel=0b11110, inp30= 0b011 
-- Expected Output: out = 0b011 
-- Observed Output in the DUT dut.out=0
+  - Test Inputs: sel=0b11110, inp30= 0b011 
+  - Expected Output: out = 0b011 
+  - Observed Output in the DUT dut.out=0
 
 
 Output mismatches for the above inputs proving that there is a design bug
