@@ -135,14 +135,14 @@ In the input_capture module there are three design bugs, namely *val* register r
 *val* register bug:
 ```
  else begin
-    	             //==> bug, val<=tempCount should be present
+    	             //===>bug, val<=tempCount; should be present
       	intFlag<=1'b1;
 ```
 *intFlag* reset bug:
 ```
      	intFlag<=1'b1;
     end
-        //===>bug , intFlag<=1'b0 should be present
+        //===>bug, if(rstIntFlag) intFlag<=1'b0; should be present
 ```
 All other operations are correct, as the expected output matches the observed output from the dut, for all the tests.
 
