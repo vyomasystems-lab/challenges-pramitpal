@@ -164,5 +164,28 @@ Finally an assert statement checks if the error counter is equal to zero, if fal
 ## Is the verification complete ?
 Yes.
 After running both the tests on the dut, both raises an Assertion error for each of the two tests giving ``one`` error for the counter module and ``three`` errors for the input_capture module.
+Fixing the design bugs:
+```
+  always@(posedge clk ) begin
+    if(reset)    //Set Counter to Zero
+      count <= 0;
+    else
+      count <= count + 1; //corrected
+```
+```
+  always@(posedge sig or posedge rstVal or posedge rstIntFlag) begin
+    if(rstVal)
+      	val<=4'b0; //corrected
+```
+```
+    else begin
+    	val<=tempCount; //corrected
+      	intFlag<=1'b1;
+```
+```
+    end
+    if(rstIntFlag)
+      intFlag<=1'b0; //corrected
+```
 After correcting the bugs in the design and running the same tests on the corrected design, the tests come out successful with zero errors.
 Thus the verification is complete and all the bugs are found.
