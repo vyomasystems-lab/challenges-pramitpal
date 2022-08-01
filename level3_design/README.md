@@ -115,8 +115,35 @@ The following error is seen:
 Output mismatches for the above tests prove that there are design bugs in both the counter module and the input_capture module in the design.
 
 ## Design Bug
-Based on the above test inputs and analysing the design, we see that in the counter module the counting does not increment with each clock pulse, but decrements by one for each clock pulse which is a design bug. 
+Based on the above test inputs and analysing the design, we see that in the counter module the counting does not increment with each clock pulse, but decrements by one for each clock pulse which is a design bug, which can be seen in the following code snippet
+```
+ always@(posedge clk ) begin
+    if(reset)    //Set Counter to Zero
+      count <= 0;
+    else
+      count <= count - 1; //===> bug should be count<=count+1
+  end
+```
+
 In the input_capture module there are three design bugs, namely *val* register reset working incorrectly, *val* register does not match with the current count value of the counter module and the *intFlag* reset is also working incorrectly.
+*Val* register reset bug:
+```
+  always@(posedge sig or posedge rstVal or posedge rstIntFlag) begin
+    if(rstVal)
+      	val<= 1; //===>bug, should be zero
+```
+*val* register bug:
+```
+ else begin
+    	             //==> bug, val<=tempCount should be present
+      	intFlag<=1'b1;
+```
+*intFlag* reset bug:
+```
+     	intFlag<=1'b1;
+    end
+        //===>bug , intFlag<=1'b0 should be present
+```
 All other operations are correct, as the expected output matches the observed output from the dut, for all the tests.
 
 ## Design Fix
