@@ -4,7 +4,7 @@ The verification environment is setup using [Vyoma's UpTickPro](https://vyomasys
 
 ![gitpod ss2](https://user-images.githubusercontent.com/41202066/182039952-0cf50802-d115-4e40-b229-89c6aad7ab86.png)
 
-## Verification Environment0
+## Verification Environment
 
 The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained. The test drives inputs to the Design Under Test (input_capture module here) which takes in clock through *clk* and input signal through *sig* port. The dut gives 8-bit value of the timestamped captured input signal through *val* output port. For each input signal captured, the dut outputs a timestamped value and sets an interrupt flag through the *intFlag* port.
 
